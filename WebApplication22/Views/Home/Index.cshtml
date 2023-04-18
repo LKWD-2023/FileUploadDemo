@@ -1,0 +1,36 @@
+﻿@using ImageUploads.Data
+@model List<Image>
+
+<form method="post" action="/home/upload" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <input type="text" placeholder="Title" class="form-control" name="title" />
+        </div>
+        <div class="col-md-6 offset-md-3 mt-3">
+            <input type="file" class="form-control" name="image" />
+        </div>
+        <div class="col-md-6 offset-md-3 mt-3">
+            <button class="btn btn-primary w-100">Submit</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover table-striped table-bordered mt-5">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var image in Model)
+        {
+            <tr>
+                <td>@image.Title</td>
+                <td>
+                    <img src="/uploads/@image.ImagePath" style="max-width:500px;" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
